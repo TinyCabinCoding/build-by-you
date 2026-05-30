@@ -1,0 +1,344 @@
+{
+	"name": "grokrepchat",
+	"displayName": "Build by Grok",
+	"publisher": "local",
+	"description": "Codex-style VS Code chat agent powered by the xAI Grok API",
+	"version": "4.20.190",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/local/grokrepchat"
+	},
+	"engines": {
+		"vscode": "^1.110.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"grok",
+		"xai",
+		"agent",
+		"chat",
+		"code",
+		"assistant"
+	],
+	"files": [
+		"dist/**",
+		"package.json",
+		"README.md",
+		"CHANGELOG.md",
+		"LICENSE"
+	],
+	"activationEvents": [
+		"onCommand:grokrepchat.openChat",
+		"onCommand:grokrepchat.setApiKey",
+		"onCommand:grokrepchat.clearApiKey",
+		"onCommand:grokrepchat.selectWorkspace",
+		"onView:grokrepchat.sidebar"
+	],
+	"main": "dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "grokrepchat.openChat",
+				"title": "Build by Grok: Open Chat Sidebar"
+			},
+			{
+				"command": "grokrepchat.openPopoutChat",
+				"title": "Build by Grok: Open Chat Popout"
+			},
+			{
+				"command": "grokrepchat.focusSidebar",
+				"title": "Build by Grok: Focus Sidebar"
+			},
+			{
+				"command": "grokrepchat.setApiKey",
+				"title": "Build by Grok: Set xAI API Key"
+			},
+			{
+				"command": "grokrepchat.buildNewSite",
+				"title": "Build by Grok: Build New Site"
+			},
+			{
+				"command": "grokrepchat.factoryReset",
+				"title": "Build by Grok: Factory Reset Workspace State"
+			},
+			{
+				"command": "grokrepchat.clearApiKey",
+				"title": "Build by Grok: Clear xAI API Key"
+			},
+			{
+				"command": "grokrepchat.selectWorkspace",
+				"title": "Build by Grok: Select Workspace Folder"
+			},
+			{
+				"command": "grokrepchat.verifyWorkspace",
+				"title": "Build by Grok: Verify Workspace"
+			},
+			{
+				"command": "grokrepchat.repairWorkspace",
+				"title": "Build by Grok: Repair Workspace"
+			},
+			{
+				"command": "grokrepchat.securityAudit",
+				"title": "Build by Grok: Security Audit"
+			},
+			{
+				"command": "grokrepchat.rerunLastWorkflow",
+				"title": "Build by Grok: Rerun Last Workflow"
+			},
+			{
+				"command": "grokrepchat.showLastFailure",
+				"title": "Build by Grok: Show Last Failure"
+			},
+			{
+				"command": "grokrepchat.startDevServer",
+				"title": "Build by Grok: Start Server"
+			},
+			{
+				"command": "grokrepchat.stopDevServer",
+				"title": "Build by Grok: Stop Server"
+			},
+			{
+				"command": "grokrepchat.openPreview",
+				"title": "Build by Grok: Open Preview"
+			},
+			{
+				"command": "grokrepchat.openTerminal",
+				"title": "Build by Grok: Open Workspace Terminal"
+			},
+			{
+				"command": "grokrepchat.openSourceControl",
+				"title": "Build by Grok: Open Source Control"
+			},
+			{
+				"command": "grokrepchat.openSecurityLog",
+				"title": "Build by Grok: Open Security Log"
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "grokrepchat",
+					"title": "Build by Grok",
+					"icon": "$(hubot)"
+				}
+			]
+		},
+		"views": {
+			"grokrepchat": [
+				{
+					"id": "grokrepchat.sidebar",
+					"name": "Build by Grok",
+					"type": "webview"
+				}
+			]
+		},
+		"configuration": {
+			"title": "Build by Grok",
+			"properties": {
+				"grokrepchat.baseUrl": {
+					"type": "string",
+					"default": "https://api.x.ai/v1",
+					"description": "Base URL for the xAI API."
+				},
+				"grokrepchat.executorModel": {
+					"type": "string",
+					"default": "grok-4.3",
+					"description": "Grok model used for coding and tool calling."
+				},
+				"grokrepchat.imageModel": {
+					"type": "string",
+					"default": "grok-imagine-image-quality",
+					"description": "xAI image model used when the agent generates local project images."
+				},
+				"grokrepchat.enablePlanner": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable optional advanced planning for larger or more complex tasks."
+				},
+				"grokrepchat.plannerModel": {
+					"type": "string",
+					"default": "grok-4.20-multi-agent",
+					"description": "Model used for optional advanced planning."
+				},
+				"grokrepchat.plannerEffort": {
+					"type": "string",
+					"enum": [
+						"low",
+						"medium",
+						"high",
+						"xhigh"
+					],
+					"default": "low",
+					"description": "Effort level for optional advanced planning."
+				},
+				"grokrepchat.commandTimeoutMs": {
+					"type": "number",
+					"default": 300000,
+					"minimum": 1000,
+					"description": "Timeout for local shell commands executed by the coding agent."
+				},
+				"grokrepchat.maxRepairIterations": {
+					"type": "number",
+					"default": 3,
+					"minimum": 1,
+					"description": "Maximum automated repair attempts per failing verification command."
+				},
+				"grokrepchat.maxToolOutputChars": {
+					"type": "number",
+					"default": 50000,
+					"minimum": 1000,
+					"description": "Maximum characters returned from a single non-file-read local tool invocation."
+				},
+				"grokrepchat.requireApprovalForFileWrites": {
+					"type": "boolean",
+					"default": true,
+					"description": "Require approval before file write, replace, or delete operations."
+				},
+				"grokrepchat.requireApprovalForCommands": {
+					"type": "boolean",
+					"default": true,
+					"description": "Require approval before shell commands are executed."
+				},
+				"grokrepchat.autonomousCommandPolicy": {
+					"type": "string",
+					"enum": [
+						"safeOnly",
+						"all"
+					],
+					"default": "safeOnly",
+					"description": "When execution mode is autonomous, either auto-approve only safe commands or auto-approve all commands except blocked patterns."
+				},
+				"grokrepchat.autonomousAllowedCommands": {
+					"type": "array",
+					"default": [
+						"npm run build",
+						"npm run lint",
+						"npm run test",
+						"npm run dev",
+						"pnpm run build",
+						"pnpm run lint",
+						"pnpm run test",
+						"pnpm run dev",
+						"yarn run build",
+						"yarn run lint",
+						"yarn run test",
+						"yarn run dev",
+						"git status",
+						"git diff",
+						"git add -a",
+						"git add -A",
+						"git rev-parse --is-inside-work-tree",
+						"git rev-parse --show-toplevel"
+					],
+					"description": "Exact commands that can auto-run in autonomous safe mode without another approval prompt.",
+					"items": {
+						"type": "string"
+					}
+				},
+				"grokrepchat.safeCommandPrefixes": {
+					"type": "array",
+					"default": [
+						"git status",
+						"git diff",
+						"git add",
+						"git rev-parse",
+						"ls",
+						"dir",
+						"cat",
+						"type",
+						"pwd",
+						"echo",
+						"rg"
+					],
+					"description": "Command prefixes treated as safe for autonomous auto-approval.",
+					"items": {
+						"type": "string"
+					}
+				},
+				"grokrepchat.blockedCommandPatterns": {
+					"type": "array",
+					"default": [
+						"(^|\\\\s)rm\\\\s+-rf\\\\s+/",
+						"(^|\\\\s)sudo\\\\b",
+						"(^|\\\\s)mkfs\\\\b",
+						"(^|\\\\s)dd\\\\b",
+						"(^|\\\\s)shutdown\\\\b",
+						"(^|\\\\s)reboot\\\\b",
+						"(^|\\\\s)poweroff\\\\b",
+						"(^|\\\\s)halt\\\\b",
+						"(^|\\\\s)diskutil\\\\s+erase",
+						"(^|\\\\s)format\\\\s+[a-z]:"
+					],
+					"description": "Regex-like patterns that are always blocked from command execution.",
+					"items": {
+						"type": "string"
+					}
+				},
+				"grokrepchat.autoStageApprovedChanges": {
+					"type": "boolean",
+					"default": false,
+					"description": "Automatically stage approved file changes with git add -A when the workspace is a git repository."
+				},
+				"grokrepchat.persistSensitiveHistory": {
+					"type": "boolean",
+					"default": false,
+					"description": "Chat Memory. Persist raw chat history, recent chats, timeline details, terminal history, and task output locally in VS Code. Disabled by default to reduce local retention of sensitive data."
+				},
+				"grokrepchat.taskPresets": {
+					"type": "array",
+					"default": [],
+					"description": "Reusable task presets available through slash commands.",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"command": {
+								"type": "string"
+							},
+							"description": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"name",
+							"command"
+						]
+					}
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src",
+		"test": "vscode-test",
+		"package:vsix": "npm run package && node scripts/package-vsix.js"
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.10",
+		"@types/node": "22.x",
+		"@types/vscode": "^1.110.0",
+		"@vscode/test-cli": "^0.0.12",
+		"@vscode/test-electron": "^2.5.2",
+		"@vscode/vsce": "^3.9.1",
+		"eslint": "^9.39.3",
+		"ts-loader": "^9.5.4",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.56.1",
+		"webpack": "^5.105.3",
+		"webpack-cli": "^6.0.1"
+	},
+	"dependencies": {
+		"diff": "^9.0.0"
+	}
+}

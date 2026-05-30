@@ -1,0 +1,9 @@
+out
+dist
+node_modules
+.vscode-test/
+.codex
+.backups/
+*.vsix
+*.pre-*-backup
+*.known-good

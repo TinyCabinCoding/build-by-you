@@ -1,0 +1,70 @@
+import * as vscode from 'vscode';
+import { AutonomousCommandPolicy, ExtensionConfig, TaskPreset } from '../core/types';
+
+export class ConfigService {
+	public get(): ExtensionConfig {
+		const config = vscode.workspace.getConfiguration('grokrepchat');
+		return {
+			baseUrl: config.get<string>('baseUrl', 'https://api.x.ai/v1'),
+			executorModel: config.get<string>('executorModel', 'grok-4.3'),
+			enablePlanner: config.get<boolean>('enablePlanner', false),
+			plannerModel: config.get<string>('plannerModel', 'grok-4.20-multi-agent'),
+			imageModel: config.get<string>('imageModel', 'grok-imagine-image-quality'),
+			plannerEffort: config.get<'low' | 'medium' | 'high' | 'xhigh'>('plannerEffort', 'low'),
+			commandTimeoutMs: config.get<number>('commandTimeoutMs', 300000),
+			maxRepairIterations: config.get<number>('maxRepairIterations', 3),
+			maxToolOutputChars: config.get<number>('maxToolOutputChars', 50000),
+			requireApprovalForFileWrites: config.get<boolean>('requireApprovalForFileWrites', true),
+			requireApprovalForCommands: config.get<boolean>('requireApprovalForCommands', true),
+			autonomousCommandPolicy: config.get<AutonomousCommandPolicy>('autonomousCommandPolicy', 'safeOnly'),
+			autonomousAllowedCommands: config.get<string[]>('autonomousAllowedCommands', [
+				'npm run build',
+				'npm run lint',
+				'npm run test',
+				'npm run dev',
+				'pnpm run build',
+				'pnpm run lint',
+				'pnpm run test',
+				'pnpm run dev',
+				'yarn run build',
+				'yarn run lint',
+				'yarn run test',
+				'yarn run dev',
+				'git status',
+				'git diff',
+				'git add -a',
+				'git add -A',
+				'git rev-parse --is-inside-work-tree',
+				'git rev-parse --show-toplevel',
+			]),
+			safeCommandPrefixes: config.get<string[]>('safeCommandPrefixes', [
+				'git status',
+				'git diff',
+				'git add',
+				'git rev-parse',
+				'ls',
+				'dir',
+				'cat',
+				'type',
+				'pwd',
+				'echo',
+				'rg',
+			]),
+			blockedCommandPatterns: config.get<string[]>('blockedCommandPatterns', [
+				'(^|\\s)rm\\s+-rf\\s+/',
+				'(^|\\s)sudo\\b',
+				'(^|\\s)mkfs\\b',
+				'(^|\\s)dd\\b',
+				'(^|\\s)shutdown\\b',
+				'(^|\\s)reboot\\b',
+				'(^|\\s)poweroff\\b',
+				'(^|\\s)halt\\b',
+				'(^|\\s)diskutil\\s+erase',
+				'(^|\\s)format\\s+[a-z]:',
+			]),
+			autoStageApprovedChanges: config.get<boolean>('autoStageApprovedChanges', false),
+			persistSensitiveHistory: config.get<boolean>('persistSensitiveHistory', false),
+			taskPresets: config.get<TaskPreset[]>('taskPresets', []),
+		};
+	}
+}
