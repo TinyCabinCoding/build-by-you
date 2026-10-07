@@ -163,7 +163,7 @@ export class TaskPresetService {
 	}
 
 	private async findHtmlPreviewPaths(root: string): Promise<Array<{ path: string; mtimeMs: number; size: number }>> {
-		const ignored = new Set(['.git', 'node_modules', '.venv', 'venv', '__pycache__', '.build-by-grok']);
+		const ignored = new Set(['.git', 'node_modules', '.venv', 'venv', '__pycache__', '.build-by-you']);
 		const candidates: Array<{ path: string; mtimeMs: number; size: number }> = [];
 
 		const visit = async (dir: string, depth: number): Promise<void> => {

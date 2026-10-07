@@ -331,7 +331,7 @@ export class GitService {
 			'.slidev/',
 			'.vercel/',
 			'.wrangler/',
-			'.build-by-grok/',
+			'.build-by-you/',
 			'.env',
 			'.env.*',
 			'*.log',
@@ -365,7 +365,7 @@ export class GitService {
 	}
 
 	private async gitWithGithubToken(folder: vscode.WorkspaceFolder, args: string[], token: string, timeout: number, maxBuffer = 1024 * 1024): Promise<GitExecResult> {
-		const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'build-by-grok-git-'));
+		const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'build-by-you-git-'));
 		const askpassPath = path.join(tempDir, process.platform === 'win32' ? 'askpass.cmd' : 'askpass.sh');
 		const script = process.platform === 'win32'
 			? '@echo off\r\necho %1 | findstr /I Username >nul\r\nif %errorlevel%==0 (echo x-access-token) else (echo %BUILD_BY_GROK_GITHUB_TOKEN%)\r\n'
@@ -455,7 +455,7 @@ export class GitService {
 				Accept: 'application/vnd.github+json',
 				Authorization: `Bearer ${token}`,
 				'Content-Type': 'application/json',
-				'User-Agent': 'build-by-grok-vscode',
+				'User-Agent': 'build-by-you-vscode',
 				'X-GitHub-Api-Version': '2022-11-28',
 			},
 			body: body === undefined ? undefined : JSON.stringify(body),

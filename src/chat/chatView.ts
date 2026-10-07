@@ -57,7 +57,7 @@ function buildHtml(webview: vscode.Webview): string {
 	<meta charset="UTF-8" />
 	<meta http-equiv="Content-Security-Policy" content="${csp}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Build by Grok</title>
+	<title>Build by You</title>
 	<style>
 		:root {
 			color-scheme: light dark;
@@ -558,7 +558,7 @@ function buildHtml(webview: vscode.Webview): string {
 </head>
 <body>
 	<header class="header">
-		<div class="title">Build by Grok</div>
+		<div class="title">Build by You</div>
 		<div class="meta" id="meta">Loading...</div>
 	</header>
 	<main class="messages" id="messages" aria-live="polite">
@@ -1391,7 +1391,7 @@ class ChatWebviewSurface implements ChatSurface {
 				await this.host.handleDeleteRecentConversation(message.id ?? '');
 				break;
 			case 'webviewError':
-				void vscode.window.showErrorMessage(`Build by Grok chat error: ${message.text ?? 'Unknown webview error'}`);
+				void vscode.window.showErrorMessage(`Build by You chat error: ${message.text ?? 'Unknown webview error'}`);
 				break;
 		}
 	}
@@ -1422,8 +1422,8 @@ export class ChatPanel {
 		}
 
 		const panel = vscode.window.createWebviewPanel(
-			'grokrepchat.chat',
-			'Build by Grok',
+			'buildbyyou.chat',
+			'Build by You',
 			vscode.ViewColumn.Beside,
 			{
 				enableScripts: true,
@@ -1445,7 +1445,7 @@ export class ChatPanel {
 }
 
 export class ChatSidebarProvider implements vscode.WebviewViewProvider {
-	public static readonly viewType = 'grokrepchat.sidebar';
+	public static readonly viewType = 'buildbyyou.sidebar';
 	private surface: ChatWebviewSurface | undefined;
 
 	public constructor(
@@ -1470,6 +1470,6 @@ export class ChatSidebarProvider implements vscode.WebviewViewProvider {
 	}
 
 	public reveal(): void {
-		void vscode.commands.executeCommand('grokrepchat.sidebar.focus');
+		void vscode.commands.executeCommand('buildbyyou.sidebar.focus');
 	}
 }

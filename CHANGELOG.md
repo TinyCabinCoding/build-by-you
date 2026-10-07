@@ -1,6 +1,11 @@
 # Change Log
 
-Public release notes for Build by Grok.
+Public release notes for Build by You.
+
+## [4.20.190]
+
+- Renamed the extension from Build by Grok to Build by You, including the package id `buildbyyou` and the workspace folder `.build-by-you`.
+- Relicensed the project under GPL-3.0, with a separate paid license for closed-source or no-credit commercial use. This release is free for learning and comes with no support.
 
 ## [4.20.160]
 

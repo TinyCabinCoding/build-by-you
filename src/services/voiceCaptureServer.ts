@@ -147,7 +147,7 @@ export class VoiceCaptureServer {
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Build by Grok Voice Capture</title>
+	<title>Build by You Voice Capture</title>
 	<style>
 		:root {
 			color-scheme: dark;
@@ -320,7 +320,7 @@ export class VoiceCaptureServer {
 	<main class="card">
 		<section class="inner">
 			<button class="mic" id="mic" type="button" aria-label="Start recording">🎙</button>
-			<h1>Build by Grok Voice</h1>
+			<h1>Build by You Voice</h1>
 			<p>This browser window handles mic permission more reliably than VS Code webviews. It stays open until you end the session. Click once to record, click again to stop and send the transcript back to the chat prompt.</p>
 			<div class="mode" id="mode">Mic off</div>
 			<div class="timer" id="timer">00:00</div>
@@ -458,7 +458,7 @@ export class VoiceCaptureServer {
 						}
 						result.textContent = body.transcript || '';
 						result.classList.add('visible');
-						setStatus('Transcript sent to Build by Grok. You can close this window.');
+						setStatus('Transcript sent to Build by You. You can close this window.');
 						timer.textContent = '00:00';
 					} catch (error) {
 						setStatus(error instanceof Error ? error.message : String(error));

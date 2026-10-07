@@ -272,7 +272,7 @@ function buildVoiceHtml(nonce: string, csp: string): string {
 	<meta charset="UTF-8" />
 	<meta http-equiv="Content-Security-Policy" content="${csp}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Build by Grok Voice Capture</title>
+	<title>Build by You Voice Capture</title>
 	<style>
 		:root {
 			color-scheme: dark;
@@ -437,7 +437,7 @@ function buildVoiceHtml(nonce: string, csp: string): string {
 </head>
 <body>
 	<div class="header">
-		<strong>Build by Grok Voice Capture</strong>
+		<strong>Build by You Voice Capture</strong>
 		<span>Click the microphone to record. Click again to stop and transcribe into the chat prompt.</span>
 	</div>
 	<main class="stage">
@@ -667,7 +667,7 @@ export class PreviewPanel {
 		const panel = PreviewPanel.createOrShow({ mode: 'voice' });
 		panel.voiceHandlers = handlers;
 		panel.state = { mode: 'voice' };
-		panel.panel.title = 'Build by Grok Voice';
+		panel.panel.title = 'Build by You Voice';
 		panel.panel.reveal(vscode.ViewColumn.Beside, false);
 		panel.render();
 		return panel;

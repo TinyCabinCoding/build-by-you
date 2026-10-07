@@ -1,12 +1,12 @@
 {
-	"name": "grokrepchat",
-	"displayName": "Build by Grok",
-	"publisher": "local",
-	"description": "Codex-style VS Code chat agent powered by the xAI Grok API",
+	"name": "buildbyyou",
+	"displayName": "Build by You",
+	"publisher": "build-by-you",
+	"description": "Educational VS Code coding agent powered by the xAI Grok API. Free to study and modify under GPL-3.0. No support.",
 	"version": "4.20.190",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/local/grokrepchat"
+		"url": "https://github.com/TinyCabinCoding/build-by-you"
 	},
 	"engines": {
 		"vscode": "^1.110.0"
@@ -27,142 +27,143 @@
 		"package.json",
 		"README.md",
 		"CHANGELOG.md",
-		"LICENSE"
+		"LICENSE",
+		"COMMERCIAL.md"
 	],
 	"activationEvents": [
-		"onCommand:grokrepchat.openChat",
-		"onCommand:grokrepchat.setApiKey",
-		"onCommand:grokrepchat.clearApiKey",
-		"onCommand:grokrepchat.selectWorkspace",
-		"onView:grokrepchat.sidebar"
+		"onCommand:buildbyyou.openChat",
+		"onCommand:buildbyyou.setApiKey",
+		"onCommand:buildbyyou.clearApiKey",
+		"onCommand:buildbyyou.selectWorkspace",
+		"onView:buildbyyou.sidebar"
 	],
 	"main": "dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "grokrepchat.openChat",
-				"title": "Build by Grok: Open Chat Sidebar"
+				"command": "buildbyyou.openChat",
+				"title": "Build by You: Open Chat Sidebar"
 			},
 			{
-				"command": "grokrepchat.openPopoutChat",
-				"title": "Build by Grok: Open Chat Popout"
+				"command": "buildbyyou.openPopoutChat",
+				"title": "Build by You: Open Chat Popout"
 			},
 			{
-				"command": "grokrepchat.focusSidebar",
-				"title": "Build by Grok: Focus Sidebar"
+				"command": "buildbyyou.focusSidebar",
+				"title": "Build by You: Focus Sidebar"
 			},
 			{
-				"command": "grokrepchat.setApiKey",
-				"title": "Build by Grok: Set xAI API Key"
+				"command": "buildbyyou.setApiKey",
+				"title": "Build by You: Set xAI API Key"
 			},
 			{
-				"command": "grokrepchat.buildNewSite",
-				"title": "Build by Grok: Build New Site"
+				"command": "buildbyyou.buildNewSite",
+				"title": "Build by You: Build New Site"
 			},
 			{
-				"command": "grokrepchat.factoryReset",
-				"title": "Build by Grok: Factory Reset Workspace State"
+				"command": "buildbyyou.factoryReset",
+				"title": "Build by You: Factory Reset Workspace State"
 			},
 			{
-				"command": "grokrepchat.clearApiKey",
-				"title": "Build by Grok: Clear xAI API Key"
+				"command": "buildbyyou.clearApiKey",
+				"title": "Build by You: Clear xAI API Key"
 			},
 			{
-				"command": "grokrepchat.selectWorkspace",
-				"title": "Build by Grok: Select Workspace Folder"
+				"command": "buildbyyou.selectWorkspace",
+				"title": "Build by You: Select Workspace Folder"
 			},
 			{
-				"command": "grokrepchat.verifyWorkspace",
-				"title": "Build by Grok: Verify Workspace"
+				"command": "buildbyyou.verifyWorkspace",
+				"title": "Build by You: Verify Workspace"
 			},
 			{
-				"command": "grokrepchat.repairWorkspace",
-				"title": "Build by Grok: Repair Workspace"
+				"command": "buildbyyou.repairWorkspace",
+				"title": "Build by You: Repair Workspace"
 			},
 			{
-				"command": "grokrepchat.securityAudit",
-				"title": "Build by Grok: Security Audit"
+				"command": "buildbyyou.securityAudit",
+				"title": "Build by You: Security Audit"
 			},
 			{
-				"command": "grokrepchat.rerunLastWorkflow",
-				"title": "Build by Grok: Rerun Last Workflow"
+				"command": "buildbyyou.rerunLastWorkflow",
+				"title": "Build by You: Rerun Last Workflow"
 			},
 			{
-				"command": "grokrepchat.showLastFailure",
-				"title": "Build by Grok: Show Last Failure"
+				"command": "buildbyyou.showLastFailure",
+				"title": "Build by You: Show Last Failure"
 			},
 			{
-				"command": "grokrepchat.startDevServer",
-				"title": "Build by Grok: Start Server"
+				"command": "buildbyyou.startDevServer",
+				"title": "Build by You: Start Server"
 			},
 			{
-				"command": "grokrepchat.stopDevServer",
-				"title": "Build by Grok: Stop Server"
+				"command": "buildbyyou.stopDevServer",
+				"title": "Build by You: Stop Server"
 			},
 			{
-				"command": "grokrepchat.openPreview",
-				"title": "Build by Grok: Open Preview"
+				"command": "buildbyyou.openPreview",
+				"title": "Build by You: Open Preview"
 			},
 			{
-				"command": "grokrepchat.openTerminal",
-				"title": "Build by Grok: Open Workspace Terminal"
+				"command": "buildbyyou.openTerminal",
+				"title": "Build by You: Open Workspace Terminal"
 			},
 			{
-				"command": "grokrepchat.openSourceControl",
-				"title": "Build by Grok: Open Source Control"
+				"command": "buildbyyou.openSourceControl",
+				"title": "Build by You: Open Source Control"
 			},
 			{
-				"command": "grokrepchat.openSecurityLog",
-				"title": "Build by Grok: Open Security Log"
+				"command": "buildbyyou.openSecurityLog",
+				"title": "Build by You: Open Security Log"
 			}
 		],
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "grokrepchat",
-					"title": "Build by Grok",
+					"id": "buildbyyou",
+					"title": "Build by You",
 					"icon": "$(hubot)"
 				}
 			]
 		},
 		"views": {
-			"grokrepchat": [
+			"buildbyyou": [
 				{
-					"id": "grokrepchat.sidebar",
-					"name": "Build by Grok",
+					"id": "buildbyyou.sidebar",
+					"name": "Build by You",
 					"type": "webview"
 				}
 			]
 		},
 		"configuration": {
-			"title": "Build by Grok",
+			"title": "Build by You",
 			"properties": {
-				"grokrepchat.baseUrl": {
+				"buildbyyou.baseUrl": {
 					"type": "string",
 					"default": "https://api.x.ai/v1",
 					"description": "Base URL for the xAI API."
 				},
-				"grokrepchat.executorModel": {
+				"buildbyyou.executorModel": {
 					"type": "string",
 					"default": "grok-4.3",
 					"description": "Grok model used for coding and tool calling."
 				},
-				"grokrepchat.imageModel": {
+				"buildbyyou.imageModel": {
 					"type": "string",
 					"default": "grok-imagine-image-quality",
 					"description": "xAI image model used when the agent generates local project images."
 				},
-				"grokrepchat.enablePlanner": {
+				"buildbyyou.enablePlanner": {
 					"type": "boolean",
 					"default": false,
 					"description": "Enable optional advanced planning for larger or more complex tasks."
 				},
-				"grokrepchat.plannerModel": {
+				"buildbyyou.plannerModel": {
 					"type": "string",
 					"default": "grok-4.20-multi-agent",
 					"description": "Model used for optional advanced planning."
 				},
-				"grokrepchat.plannerEffort": {
+				"buildbyyou.plannerEffort": {
 					"type": "string",
 					"enum": [
 						"low",
@@ -173,35 +174,35 @@
 					"default": "low",
 					"description": "Effort level for optional advanced planning."
 				},
-				"grokrepchat.commandTimeoutMs": {
+				"buildbyyou.commandTimeoutMs": {
 					"type": "number",
 					"default": 300000,
 					"minimum": 1000,
 					"description": "Timeout for local shell commands executed by the coding agent."
 				},
-				"grokrepchat.maxRepairIterations": {
+				"buildbyyou.maxRepairIterations": {
 					"type": "number",
 					"default": 3,
 					"minimum": 1,
 					"description": "Maximum automated repair attempts per failing verification command."
 				},
-				"grokrepchat.maxToolOutputChars": {
+				"buildbyyou.maxToolOutputChars": {
 					"type": "number",
 					"default": 50000,
 					"minimum": 1000,
 					"description": "Maximum characters returned from a single non-file-read local tool invocation."
 				},
-				"grokrepchat.requireApprovalForFileWrites": {
+				"buildbyyou.requireApprovalForFileWrites": {
 					"type": "boolean",
 					"default": true,
 					"description": "Require approval before file write, replace, or delete operations."
 				},
-				"grokrepchat.requireApprovalForCommands": {
+				"buildbyyou.requireApprovalForCommands": {
 					"type": "boolean",
 					"default": true,
 					"description": "Require approval before shell commands are executed."
 				},
-				"grokrepchat.autonomousCommandPolicy": {
+				"buildbyyou.autonomousCommandPolicy": {
 					"type": "string",
 					"enum": [
 						"safeOnly",
@@ -210,7 +211,7 @@
 					"default": "safeOnly",
 					"description": "When execution mode is autonomous, either auto-approve only safe commands or auto-approve all commands except blocked patterns."
 				},
-				"grokrepchat.autonomousAllowedCommands": {
+				"buildbyyou.autonomousAllowedCommands": {
 					"type": "array",
 					"default": [
 						"npm run build",
@@ -237,7 +238,7 @@
 						"type": "string"
 					}
 				},
-				"grokrepchat.safeCommandPrefixes": {
+				"buildbyyou.safeCommandPrefixes": {
 					"type": "array",
 					"default": [
 						"git status",
@@ -257,7 +258,7 @@
 						"type": "string"
 					}
 				},
-				"grokrepchat.blockedCommandPatterns": {
+				"buildbyyou.blockedCommandPatterns": {
 					"type": "array",
 					"default": [
 						"(^|\\\\s)rm\\\\s+-rf\\\\s+/",
@@ -276,17 +277,17 @@
 						"type": "string"
 					}
 				},
-				"grokrepchat.autoStageApprovedChanges": {
+				"buildbyyou.autoStageApprovedChanges": {
 					"type": "boolean",
 					"default": false,
 					"description": "Automatically stage approved file changes with git add -A when the workspace is a git repository."
 				},
-				"grokrepchat.persistSensitiveHistory": {
+				"buildbyyou.persistSensitiveHistory": {
 					"type": "boolean",
 					"default": false,
 					"description": "Chat Memory. Persist raw chat history, recent chats, timeline details, terminal history, and task output locally in VS Code. Disabled by default to reduce local retention of sensitive data."
 				},
-				"grokrepchat.taskPresets": {
+				"buildbyyou.taskPresets": {
 					"type": "array",
 					"default": [],
 					"description": "Reusable task presets available through slash commands.",

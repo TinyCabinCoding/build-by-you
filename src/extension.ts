@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext): void {
 	const taskPresetService = new TaskPresetService();
 	const workspaceContextService = new WorkspaceContextService();
 	const grokAgentService = new GrokAgentService();
-	const securityOutputChannel = vscode.window.createOutputChannel('Build by Grok (Security)');
+	const securityOutputChannel = vscode.window.createOutputChannel('Build by You (Security)');
 	const chatController = new ChatController(
 		context,
 		configService,
@@ -35,66 +35,66 @@ export function activate(context: vscode.ExtensionContext): void {
 	context.subscriptions.push(
 		securityOutputChannel,
 		{ dispose: () => chatController.dispose() },
-		vscode.window.registerWebviewViewProvider('grokrepchat.sidebar', chatController.getSidebarProvider(), {
+		vscode.window.registerWebviewViewProvider('buildbyyou.sidebar', chatController.getSidebarProvider(), {
 			webviewOptions: { retainContextWhenHidden: true },
 		}),
-		vscode.commands.registerCommand('grokrepchat.openChat', async () => {
-			await vscode.commands.executeCommand('workbench.view.extension.grokrepchat');
+		vscode.commands.registerCommand('buildbyyou.openChat', async () => {
+			await vscode.commands.executeCommand('workbench.view.extension.buildbyyou');
 			chatController.getSidebarProvider().reveal();
 		}),
-		vscode.commands.registerCommand('grokrepchat.openPopoutChat', async () => {
+		vscode.commands.registerCommand('buildbyyou.openPopoutChat', async () => {
 			await chatController.openPanel();
 		}),
-		vscode.commands.registerCommand('grokrepchat.focusSidebar', async () => {
-			await vscode.commands.executeCommand('workbench.view.extension.grokrepchat');
+		vscode.commands.registerCommand('buildbyyou.focusSidebar', async () => {
+			await vscode.commands.executeCommand('workbench.view.extension.buildbyyou');
 			chatController.getSidebarProvider().reveal();
 		}),
-		vscode.commands.registerCommand('grokrepchat.setApiKey', async () => {
+		vscode.commands.registerCommand('buildbyyou.setApiKey', async () => {
 			await chatController.handleSetApiKey();
 		}),
-		vscode.commands.registerCommand('grokrepchat.buildNewSite', async () => {
+		vscode.commands.registerCommand('buildbyyou.buildNewSite', async () => {
 			await chatController.handleBuildNewSite();
 		}),
-		vscode.commands.registerCommand('grokrepchat.factoryReset', async () => {
+		vscode.commands.registerCommand('buildbyyou.factoryReset', async () => {
 			await chatController.handleFactoryReset();
 		}),
-		vscode.commands.registerCommand('grokrepchat.clearApiKey', async () => {
+		vscode.commands.registerCommand('buildbyyou.clearApiKey', async () => {
 			await chatController.clearApiKey();
 		}),
-		vscode.commands.registerCommand('grokrepchat.selectWorkspace', async () => {
+		vscode.commands.registerCommand('buildbyyou.selectWorkspace', async () => {
 			await chatController.handleSelectWorkspace();
 		}),
-		vscode.commands.registerCommand('grokrepchat.verifyWorkspace', async () => {
+		vscode.commands.registerCommand('buildbyyou.verifyWorkspace', async () => {
 			await chatController.handleVerifyWorkspace();
 		}),
-		vscode.commands.registerCommand('grokrepchat.repairWorkspace', async () => {
+		vscode.commands.registerCommand('buildbyyou.repairWorkspace', async () => {
 			await chatController.handleRepairWorkspace();
 		}),
-		vscode.commands.registerCommand('grokrepchat.securityAudit', async () => {
+		vscode.commands.registerCommand('buildbyyou.securityAudit', async () => {
 			await chatController.handleSecurityAudit();
 		}),
-		vscode.commands.registerCommand('grokrepchat.rerunLastWorkflow', async () => {
+		vscode.commands.registerCommand('buildbyyou.rerunLastWorkflow', async () => {
 			await chatController.handleRerunLastWorkflow();
 		}),
-		vscode.commands.registerCommand('grokrepchat.showLastFailure', async () => {
+		vscode.commands.registerCommand('buildbyyou.showLastFailure', async () => {
 			await chatController.handleShowLastFailure();
 		}),
-		vscode.commands.registerCommand('grokrepchat.startDevServer', async () => {
+		vscode.commands.registerCommand('buildbyyou.startDevServer', async () => {
 			await chatController.handleStartDevServer();
 		}),
-		vscode.commands.registerCommand('grokrepchat.stopDevServer', async () => {
+		vscode.commands.registerCommand('buildbyyou.stopDevServer', async () => {
 			await chatController.handleStopDevServer();
 		}),
-		vscode.commands.registerCommand('grokrepchat.openPreview', async () => {
+		vscode.commands.registerCommand('buildbyyou.openPreview', async () => {
 			await chatController.handleOpenPreview();
 		}),
-		vscode.commands.registerCommand('grokrepchat.openTerminal', async () => {
+		vscode.commands.registerCommand('buildbyyou.openTerminal', async () => {
 			await chatController.handleOpenTerminal();
 		}),
-		vscode.commands.registerCommand('grokrepchat.openSourceControl', async () => {
+		vscode.commands.registerCommand('buildbyyou.openSourceControl', async () => {
 			await chatController.handleOpenSourceControl();
 		}),
-		vscode.commands.registerCommand('grokrepchat.openSecurityLog', async () => {
+		vscode.commands.registerCommand('buildbyyou.openSecurityLog', async () => {
 			securityOutputChannel.show(true);
 		}),
 	);

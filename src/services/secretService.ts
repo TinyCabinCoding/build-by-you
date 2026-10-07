@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-const SECRET_KEY = 'grokrepchat.xaiApiKey';
+const SECRET_KEY = 'buildbyyou.xaiApiKey';
 
 export class SecretService {
 	public constructor(private readonly secrets: vscode.SecretStorage) {}

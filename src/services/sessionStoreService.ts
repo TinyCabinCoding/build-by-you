@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
 import { ChatMessage, ChatSessionState, PersistedChatSessionState, RecentConversationRecord, TaskRunRecord, TerminalCommandRecord, TimelineEntry } from '../core/types';
 
-const SESSION_KEY = 'grokrepchat.chatSession';
-const TIMELINE_KEY = 'grokrepchat.timeline';
-const TERMINAL_HISTORY_KEY = 'grokrepchat.terminalHistory';
-const TASK_HISTORY_KEY = 'grokrepchat.taskHistory';
-const RECENT_CONVERSATIONS_KEY = 'grokrepchat.recentConversations';
+const SESSION_KEY = 'buildbyyou.chatSession';
+const TIMELINE_KEY = 'buildbyyou.timeline';
+const TERMINAL_HISTORY_KEY = 'buildbyyou.terminalHistory';
+const TASK_HISTORY_KEY = 'buildbyyou.taskHistory';
+const RECENT_CONVERSATIONS_KEY = 'buildbyyou.recentConversations';
 const MAX_RECENT_CONVERSATIONS = 5;
 const MAX_RECENT_CONVERSATION_MESSAGES = 60;
 

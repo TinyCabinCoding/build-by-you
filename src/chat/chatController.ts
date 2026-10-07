@@ -103,7 +103,7 @@ export class ChatController implements ChatPanelHost {
 			this.session.selectedWorkspace = folder?.uri;
 		}
 
-		this.panel.setTitle(`Build by Grok${this.currentWorkspaceLabel() ? ` - ${this.currentWorkspaceLabel()}` : ''}`);
+		this.panel.setTitle(`Build by You${this.currentWorkspaceLabel() ? ` - ${this.currentWorkspaceLabel()}` : ''}`);
 		await this.refreshState();
 		this.replayState();
 	}
@@ -162,7 +162,7 @@ export class ChatController implements ChatPanelHost {
 
 		const config = this.configService.get();
 		const client = new XaiClient(apiKey, config.baseUrl);
-		const transcript = await client.transcribeAudio(audio, detectedMimeType, `build-by-grok-voice.${this.audioExtensionForMimeType(detectedMimeType)}`);
+		const transcript = await client.transcribeAudio(audio, detectedMimeType, `build-by-you-voice.${this.audioExtensionForMimeType(detectedMimeType)}`);
 		this.securityOutputChannel.appendLine(`[${new Date().toISOString()}] Voice transcription completed (${audio.length} bytes, ${detectedMimeType}).`);
 		return transcript;
 	}
@@ -187,7 +187,7 @@ export class ChatController implements ChatPanelHost {
 				if (audio.length > MAX_VOICE_AUDIO_BYTES) {
 					throw new Error('Voice recording is too large. Stop and send shorter dictation segments.');
 				}
-				const transcript = await client.transcribeAudio(audio, mimeType, `build-by-grok-browser-voice.${this.audioExtensionForMimeType(mimeType)}`);
+				const transcript = await client.transcribeAudio(audio, mimeType, `build-by-you-browser-voice.${this.audioExtensionForMimeType(mimeType)}`);
 				this.securityOutputChannel.appendLine(`[${new Date().toISOString()}] Browser voice transcription completed (${audio.length} bytes, ${mimeType}).`);
 				return transcript;
 			},
@@ -236,7 +236,7 @@ export class ChatController implements ChatPanelHost {
 
 		const folder = this.workspaceContextService.resolveWorkspaceFolder(this.session.selectedWorkspace);
 		if (!folder) {
-			void vscode.window.showWarningMessage('Open a folder or workspace before using Build by Grok.');
+			void vscode.window.showWarningMessage('Open a folder or workspace before using Build by You.');
 			return;
 		}
 
@@ -689,7 +689,7 @@ export class ChatController implements ChatPanelHost {
 		}
 
 		await this.secretService.setApiKey(value);
-		void vscode.window.showInformationMessage('xAI API key stored for Build by Grok.');
+		void vscode.window.showInformationMessage('xAI API key stored for Build by You.');
 		await this.refreshState();
 	}
 
@@ -730,7 +730,7 @@ export class ChatController implements ChatPanelHost {
 	}
 
 	public async handleToggleMemoryMode(): Promise<void> {
-		const config = vscode.workspace.getConfiguration('grokrepchat');
+		const config = vscode.workspace.getConfiguration('buildbyyou');
 		const current = this.configService.get().persistSensitiveHistory;
 		await config.update('persistSensitiveHistory', !current, vscode.ConfigurationTarget.Global);
 		const memoryEnabled = !current;
@@ -906,7 +906,7 @@ export class ChatController implements ChatPanelHost {
 
 	public async handleFactoryReset(): Promise<void> {
 		const choice = await vscode.window.showWarningMessage(
-			'Factory reset Build by Grok for this workspace? This clears chat history, task history, timeline, workflow state, terminal history, and selected workspace state.',
+			'Factory reset Build by You for this workspace? This clears chat history, task history, timeline, workflow state, terminal history, and selected workspace state.',
 			{ modal: true },
 			'Reset Workspace State',
 			'Reset + Clear API Key',
@@ -932,8 +932,8 @@ export class ChatController implements ChatPanelHost {
 		this.forEachSurface((surface) => {
 			surface.clearAll();
 			surface.postSystem(choice === 'Reset + Clear API Key'
-				? 'Build by Grok workspace state and stored xAI API key were cleared.'
-				: 'Build by Grok workspace state was cleared.');
+				? 'Build by You workspace state and stored xAI API key were cleared.'
+				: 'Build by You workspace state was cleared.');
 			surface.setStatus('Ready.');
 		});
 		await this.refreshState();
@@ -1012,7 +1012,7 @@ export class ChatController implements ChatPanelHost {
 
 		const presets = await this.taskPresetService.getDevPresets(folder, this.configService.get().taskPresets);
 		if (presets.length === 0) {
-			this.forEachSurface((surface) => surface.postSystem('No dev-server preset found. Add a `dev`, `start`, `serve`, or `preview` script, or configure `grokrepchat.taskPresets`.'));
+			this.forEachSurface((surface) => surface.postSystem('No dev-server preset found. Add a `dev`, `start`, `serve`, or `preview` script, or configure `buildbyyou.taskPresets`.'));
 			return;
 		}
 
@@ -1224,7 +1224,7 @@ export class ChatController implements ChatPanelHost {
 	}
 
 	private async findStreamlitApps(root: string): Promise<Array<{ path: string; mtimeMs: number; size: number }>> {
-		const ignored = new Set(['.git', 'node_modules', '.venv', 'venv', '__pycache__', '.build-by-grok']);
+		const ignored = new Set(['.git', 'node_modules', '.venv', 'venv', '__pycache__', '.build-by-you']);
 		const candidates: Array<{ path: string; mtimeMs: number; size: number }> = [];
 
 		const visit = async (dir: string, depth: number): Promise<void> => {
@@ -1518,7 +1518,7 @@ export class ChatController implements ChatPanelHost {
 	}
 
 	public async handleOpenSettings(): Promise<void> {
-		await vscode.commands.executeCommand('workbench.action.openSettings', 'grokrepchat');
+		await vscode.commands.executeCommand('workbench.action.openSettings', 'buildbyyou');
 	}
 
 	public async handleResetConversation(): Promise<void> {
@@ -1537,7 +1537,7 @@ export class ChatController implements ChatPanelHost {
 
 	public async clearApiKey(): Promise<void> {
 		await this.secretService.clearApiKey();
-		void vscode.window.showInformationMessage('xAI API key cleared for Build by Grok.');
+		void vscode.window.showInformationMessage('xAI API key cleared for Build by You.');
 		await this.refreshState();
 	}
 
@@ -1719,7 +1719,7 @@ export class ChatController implements ChatPanelHost {
 				: undefined,
 			workflowStatus: this.session.lastWorkflow?.status,
 		};
-		this.panel?.setTitle(`Build by Grok${state.workspaceLabel ? ` - ${state.workspaceLabel}` : ''}`);
+		this.panel?.setTitle(`Build by You${state.workspaceLabel ? ` - ${state.workspaceLabel}` : ''}`);
 		this.forEachSurface((surface) => surface.setState(state));
 	}
 
@@ -1727,7 +1727,7 @@ export class ChatController implements ChatPanelHost {
 		this.forEachSurface((surface) => {
 			surface.clearAll();
 			if (this.session.messages.length === 0) {
-				surface.postSystem('Build by Grok is ready. Set your xAI API key, then ask it to inspect, edit, or test the current workspace folder.');
+				surface.postSystem('Build by You is ready. Set your xAI API key, then ask it to inspect, edit, or test the current workspace folder.');
 			}
 
 			for (const message of this.session.messages) {
@@ -1873,7 +1873,7 @@ export class ChatController implements ChatPanelHost {
 		}
 		const presets = await this.taskPresetService.getVerificationPresets(folder, config.taskPresets);
 		if (presets.length === 0) {
-			this.forEachSurface((surface) => surface.postSystem('No verification presets found. Add compile/build/lint/test scripts or configure `grokrepchat.taskPresets`.'));
+			this.forEachSurface((surface) => surface.postSystem('No verification presets found. Add compile/build/lint/test scripts or configure `buildbyyou.taskPresets`.'));
 			return;
 		}
 
@@ -2385,7 +2385,7 @@ export class ChatController implements ChatPanelHost {
 				throw new Error('Generated easter egg image was not a recognized PNG, JPEG, or WebP file.');
 			}
 
-			const outputDir = path.join(folder.uri.fsPath, '.build-by-grok', 'images');
+			const outputDir = path.join(folder.uri.fsPath, '.build-by-you', 'images');
 			const outputPath = path.join(outputDir, `milky-way-easter-egg-${Date.now()}${extension}`);
 			await fs.mkdir(outputDir, { recursive: true });
 			await fs.writeFile(outputPath, image);
@@ -2455,7 +2455,7 @@ export class ChatController implements ChatPanelHost {
 				throw new Error('Generated image was not a recognized PNG, JPEG, or WebP file.');
 			}
 
-			const outputDir = path.join(folder.uri.fsPath, '.build-by-grok', 'images');
+			const outputDir = path.join(folder.uri.fsPath, '.build-by-you', 'images');
 			const outputPath = path.join(outputDir, `grok-imagine-${Date.now()}${extension}`);
 			await fs.mkdir(outputDir, { recursive: true });
 			await fs.writeFile(outputPath, image);
@@ -2798,7 +2798,7 @@ export class ChatController implements ChatPanelHost {
 				await this.handleShowLastFailure();
 				return true;
 			case '/sidebar':
-				await vscode.commands.executeCommand('workbench.view.extension.grokrepchat');
+				await vscode.commands.executeCommand('workbench.view.extension.buildbyyou');
 				return true;
 			case '/panel':
 				await this.openPanel();
@@ -3114,7 +3114,7 @@ export class ChatController implements ChatPanelHost {
 					this.forEachSurface((surface) => surface.postSystem('Usage: /planner on|off'));
 					return true;
 				}
-				await vscode.workspace.getConfiguration('grokrepchat').update(
+				await vscode.workspace.getConfiguration('buildbyyou').update(
 					'enablePlanner',
 					arg === 'on',
 					vscode.ConfigurationTarget.Workspace,

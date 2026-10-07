@@ -3,7 +3,7 @@ import { AutonomousCommandPolicy, ExtensionConfig, TaskPreset } from '../core/ty
 
 export class ConfigService {
 	public get(): ExtensionConfig {
-		const config = vscode.workspace.getConfiguration('grokrepchat');
+		const config = vscode.workspace.getConfiguration('buildbyyou');
 		return {
 			baseUrl: config.get<string>('baseUrl', 'https://api.x.ai/v1'),
 			executorModel: config.get<string>('executorModel', 'grok-4.3'),

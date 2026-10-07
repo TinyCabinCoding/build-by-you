@@ -117,7 +117,7 @@ export class WorkspaceToolService {
 				{
 					type: 'function',
 					name: 'image_build',
-					description: 'Generate exactly one required raster image asset with Grok Imagine/xAI using the same image API as /image and /imagine, save it into .build-by-grok/images, verify the saved file exists and has a valid image signature, and return the created path.',
+					description: 'Generate exactly one required raster image asset with Grok Imagine/xAI using the same image API as /image and /imagine, save it into .build-by-you/images, verify the saved file exists and has a valid image signature, and return the created path.',
 					parameters: {
 						type: 'object',
 						properties: {
@@ -552,7 +552,7 @@ export class WorkspaceToolService {
 		return [
 			`Image built: ${finalRelativePath}`,
 			`Verified: ${savedExtension === '.jpg' ? 'image/jpeg' : savedExtension === '.png' ? 'image/png' : 'image/webp'}`,
-			`Image inbox: .build-by-grok/images`,
+			`Image inbox: .build-by-you/images`,
 			`Size: ${savedBuffer.length} bytes`,
 			`Model: ${this.config.imageModel}`,
 			'Prompt source: tool prompt argument',
@@ -565,7 +565,7 @@ export class WorkspaceToolService {
 		const fileName = this.safeImageBuildFileName(
 			requestedName || `${promptForNaming.slice(0, 48)}-${Date.now()}.jpg`
 		);
-		return this.resolvePath(path.posix.join('.build-by-grok', 'images', fileName));
+		return this.resolvePath(path.posix.join('.build-by-you', 'images', fileName));
 	}
 
 	private safeImageBuildFileName(value: string): string {

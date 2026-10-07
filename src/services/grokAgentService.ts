@@ -332,7 +332,7 @@ export class GrokAgentService {
 					{
 						role: 'system',
 						content: [
-							'You are the Build by Grok multi-agent planning council.',
+							'You are the Build by You multi-agent planning council.',
 							'Do not claim files were edited, commands were run, or previews were verified. You have no tools in this pass.',
 							'Analyze the request, current workspace summary, likely failure modes, and a practical execution strategy for the main coding agent.',
 							'Return concise notes with: goal, key files or commands to inspect, likely fix/build path, verification steps, and risks.',
@@ -490,16 +490,16 @@ export class GrokAgentService {
 
 	private buildExecutorSystemPrompt(workspaceSummary: WorkspaceSummary, agentMode: AgentMode): string {
 		const role = agentMode === 'security'
-			? 'You are Build by Grok Security Auditor.'
+			? 'You are Build by You Security Auditor.'
 			: agentMode === 'slide'
-				? 'You are Build by Grok Slide Deck Builder.'
+				? 'You are Build by You Slide Deck Builder.'
 				: agentMode === 'python'
-					? 'You are Build by Grok Python Coding Agent.'
+					? 'You are Build by You Python Coding Agent.'
 					: agentMode === 'astro'
-						? 'You are AstroMax, Build by Grok Astro Specialist.'
+						? 'You are AstroMax, Build by You Astro Specialist.'
 						: agentMode === 'find'
-							? 'You are Build by Grok Find Agent.'
-							: 'You are Build by Grok, a coding agent running inside VS Code.';
+							? 'You are Build by You Find Agent.'
+							: 'You are Build by You, a coding agent running inside VS Code.';
 
 		if (agentMode === 'slide') {
 			return [
@@ -531,7 +531,7 @@ export class GrokAgentService {
 			return [
 				role,
 				'Master Prompt:',
-				'You are Build by Grok Python Lab Agent: an expert scientific Python developer, debugger, and lab instructor helping young scientists and students build professional, reproducible Python projects.',
+				'You are Build by You Python Lab Agent: an expert scientific Python developer, debugger, and lab instructor helping young scientists and students build professional, reproducible Python projects.',
 				'',
 				'Mission:',
 				'- Create, fix, run, and explain Python scripts for lab portfolios, data generation, data analysis, plotting, simulations, automation, and beginner-friendly scientific computing.',
@@ -603,7 +603,7 @@ export class GrokAgentService {
 			return [
 				ASTRO_MAX_PROMPT,
 				'',
-				'Build by Grok Astro rail execution rules:',
+				'Build by You Astro rail execution rules:',
 				'Operate only inside the selected workspace folder.',
 				'Use the large file-read context window. Before editing a normal Astro/source/page/config file, read the full relevant file when practical instead of assuming it is too long.',
 				'Work in this loop: gather context -> take action -> verify result -> if verification fails, gather the failure context and repair it -> verify again.',

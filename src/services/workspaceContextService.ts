@@ -48,7 +48,7 @@ export class WorkspaceContextService {
 				description: folder.uri.fsPath,
 				folder,
 			})),
-			{ placeHolder: 'Select workspace folder for Build by Grok' },
+			{ placeHolder: 'Select workspace folder for Build by You' },
 		);
 		return picked?.folder;
 	}

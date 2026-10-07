@@ -88,8 +88,8 @@ function main() {
 	const repoRoot = process.cwd();
 	const pkgPath = path.join(repoRoot, 'package.json');
 	const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-	const outFile = path.join(repoRoot, `grokrepchat-${pkg.version}.vsix`);
-	const stagingRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'grokrepchat-vsix-'));
+	const outFile = path.join(repoRoot, `buildbyyou-${pkg.version}.vsix`);
+	const stagingRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'buildbyyou-vsix-'));
 	const extensionRoot = path.join(stagingRoot, 'extension');
 
 	const requiredFiles = [

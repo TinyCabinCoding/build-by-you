@@ -1,8 +1,14 @@
-# Build by Grok
+# Build by You
 
-Build by Grok is a Codex-style VS Code chat agent powered by the xAI Grok API. It helps inspect, edit, test, preview, and ship the repo currently open in VS Code.
+Build by You is a VS Code coding agent released free so people can learn how the rails and the app were built. It runs inside the editor and calls the xAI Grok API. You bring your own xAI API key.
 
-It is built for early builders, students, creators, and developers who want a focused AI coding workspace without leaving the editor.
+You may study, run, and change this code under the [GNU General Public License v3.0](LICENSE). If you ship a product based on it, you must keep this license, keep the copyright, and publish your changes under GPL-3.0.
+
+This project is offered for education. There is no support, no warranty, and no obligation to answer issues or fix bugs.
+
+Closed-source distribution, or a white-label product that drops the Build by You copyright and credit, needs a separate paid license. See [COMMERCIAL.md](COMMERCIAL.md) or email support@tinycabincoding.com.
+
+It helps inspect, edit, test, preview, and ship the repo currently open in VS Code. It is built for early builders, students, creators, and developers who want a focused AI coding workspace without leaving the editor.
 
 ## Highlights
 
@@ -95,13 +101,13 @@ The extension is workspace-native:
 2. Run `npm install` if dependencies are not already present.
 3. Run `npm run compile`.
 4. Press `F5` in VS Code to launch the Extension Development Host.
-5. In the new VS Code window, run `Build by Grok: Open Chat Sidebar` from the Command Palette.
+5. In the new VS Code window, run `Build by You: Open Chat Sidebar` from the Command Palette.
 
-You can also use the `Build by Grok` view container in the Activity Bar and work from the `Build by Grok` sidebar view.
+You can also use the `Build by You` view container in the Activity Bar and work from the `Build by You` sidebar view.
 
 ## Local Preview
 
-When a dev server prints a localhost URL like `http://localhost:3000` or `http://127.0.0.1:5173`, Build by Grok detects it from terminal output and keeps the latest preview URL for that workspace.
+When a dev server prints a localhost URL like `http://localhost:3000` or `http://127.0.0.1:5173`, Build by You detects it from terminal output and keeps the latest preview URL for that workspace.
 
 You can open it using:
 
@@ -123,9 +129,9 @@ This is meant to make local web builds easy to check without adding full browser
 You can start a new site flow from:
 
 - the `Build New Site` button in the chat UI
-- `Build by Grok: Build New Site`
+- `Build by You: Build New Site`
 
-The sidebar is the default chat experience. If you want a larger temporary surface, use `Build by Grok: Open Chat Popout`.
+The sidebar is the default chat experience. If you want a larger temporary surface, use `Build by You: Open Chat Popout`.
 
 The extension asks:
 
@@ -153,69 +159,69 @@ To build an installable extension package:
 
 1. Run `npm install`
 2. Run `npm run package:vsix`
-3. The package will be created as `grokrepchat-<version>.vsix`
+3. The package will be created as `buildbyyou-<version>.vsix`
 
 To install it in VS Code:
 
 1. Open Extensions
 2. Click the `...` menu in the top right
 3. Choose `Install from VSIX...`
-4. Select the generated `grokrepchat-<version>.vsix`
+4. Select the generated `buildbyyou-<version>.vsix`
 
 ## API Key Setup
 
 Use one of these:
 
 1. Command Palette:
-   Run `Build by Grok: Set xAI API Key`
+   Run `Build by You: Set xAI API Key`
 2. Chat panel:
    Click `Set API Key`
 
 The key is stored in VS Code Secret Storage, not in `settings.json`.
 
-If you want a full clean slate without reinstalling, use `Build by Grok: Factory Reset Workspace State`. It clears workspace chat memory, timeline, workflow state, task history, terminal history, and can optionally clear the stored API key too.
+If you want a full clean slate without reinstalling, use `Build by You: Factory Reset Workspace State`. It clears workspace chat memory, timeline, workflow state, task history, terminal history, and can optionally clear the stored API key too.
 
 To clear it:
 
-- Run `Build by Grok: Clear xAI API Key`
-- Run `Build by Grok: Build New Site`
-- Run `Build by Grok: Factory Reset Workspace State`
-- Run `Build by Grok: Verify Workspace`
-- Run `Build by Grok: Repair Workspace`
-- Run `Build by Grok: Start Dev Server`
-- Run `Build by Grok: Open Preview`
-- Run `Build by Grok: Open Workspace Terminal`
-- Run `Build by Grok: Open Source Control`
-- Run `Build by Grok: Rerun Last Workflow`
-- Run `Build by Grok: Show Last Failure`
+- Run `Build by You: Clear xAI API Key`
+- Run `Build by You: Build New Site`
+- Run `Build by You: Factory Reset Workspace State`
+- Run `Build by You: Verify Workspace`
+- Run `Build by You: Repair Workspace`
+- Run `Build by You: Start Dev Server`
+- Run `Build by You: Open Preview`
+- Run `Build by You: Open Workspace Terminal`
+- Run `Build by You: Open Source Control`
+- Run `Build by You: Rerun Last Workflow`
+- Run `Build by You: Show Last Failure`
 
 ## Settings UI
 
 This extension uses the normal VS Code extension settings UI. Open:
 
 - Command Palette -> `Preferences: Open Settings (UI)`
-- Search for `grokrepchat`
+- Search for `buildbyyou`
 
 Or from the command palette, open the extension settings directly.
 
 Available settings:
 
-- `grokrepchat.baseUrl`
-- `grokrepchat.executorModel`
-- `grokrepchat.imageModel`
-- `grokrepchat.commandTimeoutMs`
-- `grokrepchat.maxRepairIterations`
-- `grokrepchat.requireApprovalForFileWrites`
-- `grokrepchat.requireApprovalForCommands`
-- `grokrepchat.autonomousCommandPolicy`
-- `grokrepchat.autonomousAllowedCommands`
-- `grokrepchat.safeCommandPrefixes`
-- `grokrepchat.blockedCommandPatterns`
-- `grokrepchat.autoStageApprovedChanges`
-- `grokrepchat.persistSensitiveHistory`
-- `grokrepchat.maxToolOutputChars`
-- `grokrepchat.maxReadFileChars` (500,000-character minimum effective read window for source/page/config file context)
-- `grokrepchat.taskPresets`
+- `buildbyyou.baseUrl`
+- `buildbyyou.executorModel`
+- `buildbyyou.imageModel`
+- `buildbyyou.commandTimeoutMs`
+- `buildbyyou.maxRepairIterations`
+- `buildbyyou.requireApprovalForFileWrites`
+- `buildbyyou.requireApprovalForCommands`
+- `buildbyyou.autonomousCommandPolicy`
+- `buildbyyou.autonomousAllowedCommands`
+- `buildbyyou.safeCommandPrefixes`
+- `buildbyyou.blockedCommandPatterns`
+- `buildbyyou.autoStageApprovedChanges`
+- `buildbyyou.persistSensitiveHistory`
+- `buildbyyou.maxToolOutputChars`
+- `buildbyyou.maxReadFileChars` (500,000-character minimum effective read window for source/page/config file context)
+- `buildbyyou.taskPresets`
 
 ## Modes, Models, and Audit Coverage
 
@@ -228,7 +234,7 @@ Security Audit is broad repository analysis, not a formal penetration test. It r
 ## How Repo Selection Works
 
 - If one workspace folder is open, that folder is the repo scope.
-- If multiple workspace folders are open, use the `Workspace` button in the chat panel or run `Build by Grok: Select Workspace Folder`.
+- If multiple workspace folders are open, use the `Workspace` button in the chat panel or run `Build by You: Select Workspace Folder`.
 - Work is scoped to the selected workspace folder.
 
 ## Execution Mode
@@ -343,7 +349,7 @@ The extension automatically offers common presets when matching scripts exist:
 You can also define your own in workspace settings:
 
 ```json
-"grokrepchat.taskPresets": [
+"buildbyyou.taskPresets": [
   {
     "name": "typecheck",
     "command": "npm run typecheck",
